@@ -1,0 +1,600 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai-Biskut - Best Tea House in Pan Bazaar, Guwahati ☕</title>
+    <meta name="description" content="Cozy, hygienic & affordable tea house in Pan Bazaar, Guwahati. Perfect chai breaks, egg sandwiches, hot garlic noodles & more. Call now: +91 97070 97070">
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #4a4a4a;
+            overflow-x: hidden;
+        }
+
+        /* Warm Color Palette */
+        :root {
+            --primary-beige: #F5F2E9;
+            --warm-brown: #8B4513;
+            --soft-orange: #F4A261;
+            --dark-brown: #5D4037;
+            --cream: #FFF8E1;
+            --light-gray: #F8F9FA;
+        }
+
+        /* Sticky Call Button */
+        .sticky-call {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--soft-orange);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 8px 25px rgba(244, 162, 97, 0.4);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .sticky-call:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(244, 162, 97, 0.6);
+        }
+
+        @media (min-width: 768px) {
+            .sticky-call {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 999;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--warm-brown);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a4a4a;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--soft-orange);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--primary-beige) 100%);
+            padding: 120px 2rem 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23f0f0f0" opacity="0.3"/><circle cx="75" cy="75" r="0.8" fill="%23e8e8e8" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            pointer-events: none;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: #6b5e4a;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--soft-orange);
+            color: white;
+            box-shadow: 0 8px 25px rgba(244, 162, 97, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(244, 162, 97, 0.6);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--warm-brown);
+            border: 2px solid var(--soft-orange);
+        }
+
+        .btn-secondary:hover {
+            background: var(--soft-orange);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-brown);
+            margin-bottom: 3rem;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            background: var(--light-gray);
+        }
+
+        .trust-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .trust-stat {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .trust-stat:hover {
+            transform: translateY(-10px);
+        }
+
+        .trust-stat i {
+            font-size: 3rem;
+            color: var(--soft-orange);
+            margin-bottom: 1rem;
+        }
+
+        .rating {
+            font-size: 3rem;
+            color: #FFD700;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--soft-orange);
+            position: absolute;
+            top: -10px;
+            left: 20px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--dark-brown);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .about-features li {
+            padding: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .about-features i {
+            color: var(--soft-orange);
+            font-size: 1.3rem;
+            width: 30px;
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-image {
+            height: 220px;
+            background: linear-gradient(45deg, var(--soft-orange), var(--warm-brown));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .menu-content {
+            padding: 1.5rem;
+        }
+
+        .menu-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark-brown);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--soft-orange);
+            margin-bottom: 1rem;
+        }
+
+        /* Experience Section */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .experience-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .experience-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--cream), var(--primary-beige));
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--soft-orange), var(--warm-brown));
+            color: white;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h3 {
+            color: var(--dark-brown);
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--soft-orange);
+            width: 40px;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-brown);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e8e8e8;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--soft-orange);
+        }
+
+        /* Map */
+        #map {
+            height: 300px;
+            border-radius: 20px;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 1rem 60px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Scroll animations */
+        .section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">☕ Chai-Biskut</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu">☰</div>
+        </nav>
+    </header>
+
+    <!-- Sticky Call Button -->
+    <a href="tel:+919707097070" class="sticky-call" title="Call Now">
+        <i class="fas fa-phone"></i>
+    </a>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Perfect Chai Break in Guwahati ☕</h1>
+            <p>Cozy, hygienic, and affordable tea & snacks. Perfect hangout spot for friends, couples & office breaks in Pan Bazaar.</p>
+            <div class="cta-buttons">
+                <a href="tel:+919707097070" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call Now
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-shopping-cart"></i> Order Online
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section section">
+        <h2 class="section-title">Why Locals Love Us</h2>
+        <div class="trust-stats">
+            <div class="trust-stat">
+                <div class="rating">⭐ 4.3</div>
+                <h3>400+ Reviews</h3>
+                <p>Google Rating</p>
+            </div>
+            <div class="trust-stat">
+                <i class="fas fa-shield-alt"></i>
+                <h3>100% Hygienic</h3>
+                <p>Clean & sanitized daily</p>
+            </div>
+            <div class="trust-stat">
+                <i class="fas fa-rupee-sign"></i>
+                <h3>Affordable Prices</h3>
+                <p>Best value in Guwahati</p>
+            </div>
+        </div>
+        <div class="testimonials">
+            <div class="testimonial">
+                <p>"Best chai in Pan Bazaar! Super clean and cozy. Egg sandwich toast is 🔥"</p>
+                <div style="margin-top: 1.5rem; font-weight: 600; color: var(--dark-brown);">– Rahul D., Local Regular</div>
+            </div>
+            <div class="testimonial">
+                <p>"Perfect hangout spot! Hygienic, affordable and great service. Love the hot garlic noodles!"</p>
+                <div style="margin-top: 1.5rem; font-weight: 600; color: var(--dark-brown);">– Priya S., Guwahati</div>
+            </div>
+            <div class="testimonial">
+                <p>"Cozy vibes and amazing pasta! Perfect for office breaks. Will visit again!"</p>
+                <div style="margin-top: 1.5rem; font-weight: 600; color: var(--dark-brown);">– Amit K., Office
